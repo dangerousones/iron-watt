@@ -6,4 +6,5 @@ cd $(dirname $0)
 npm install
 
 cd $WORKDIR
-npm start
+#node $(dirname $0)
+bash

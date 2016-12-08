@@ -12,6 +12,8 @@ RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" >> /
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 EXPOSE 25565
+VOLUME /usr/src/app/data
+ENV DEBUG='IronWatt*'
 WORKDIR /usr/src/app/data
 
 COPY . /usr/src/app
