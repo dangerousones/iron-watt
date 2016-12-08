@@ -1,3 +1,7 @@
+### Manual progect-specific stuff
+# Server Data
+data/
+
 # Created by .ignore support plugin (hsz.mobi)
 ### JetBrains template
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
