@@ -17,5 +17,6 @@ ENV DEBUG='IronWatt*'
 WORKDIR /usr/src/app/data
 
 ADD . /usr/src/app
+RUN rm -rf ../node_modules
 
 CMD ["bash", "../start.sh"]
