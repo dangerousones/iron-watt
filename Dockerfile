@@ -11,4 +11,9 @@ RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" >> /
     && apt-get -y install oracle-java8-installer \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-CMD ["bash"]
+EXPOSE 25565
+WORKDIR /usr/src/app/data
+
+COPY . /usr/src/app
+
+CMD ["bash", "../start.sh"]
