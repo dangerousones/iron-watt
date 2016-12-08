@@ -28,13 +28,20 @@ fs.readdir(process.cwd(), (err, files) => {
     options = Object.assign({
         "minecraft": {
             // See https://launchermeta.mojang.com/mc/game/version_manifest.json for valid id's
-            "version": "1.11"
+            "version": "1.11",
+
+            // Auto download Minecraft jar if non-exist?
+            "autoDownload": true,
         }
     }, options)
 
     let jarName=`minecraft-server-${options.minecraft.version}.jar`
     // if server jar neaded exists, don't download it
     if (files.indexOf(jarName) === -1) {
+        if (!options.minecraft.autoDownload) {
+            d(`No such file "${jarName}", and autoDownload turned off. Quiting.`)
+            process.exit(1)
+        }
         d(`Minecraft Server jar ${jarName} not found.`)
         https.get("https://launchermeta.mojang.com/mc/game/version_manifest.json", function (res) {
             let error;
