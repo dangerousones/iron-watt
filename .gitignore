@@ -1,6 +1,6 @@
 ### Manual progect-specific stuff
 # Server Data
-/data/
+/data
 
 # Created by .ignore support plugin (hsz.mobi)
 ### JetBrains template
@@ -35,10 +35,10 @@
 ## Plugin-specific files:
 
 # IntelliJ
-/out/
+/out
 
 # mpeltonen/sbt-idea plugin
-.idea_modules/
+.idea_modules
 
 # JIRA plugin
 atlassian-ide-plugin.xml

@@ -3,8 +3,7 @@
 WORKDIR=$PWD
 
 cd $(dirname $0)
-npm install
+#npm install
 
 cd $WORKDIR
-#node $(dirname $0)
-bash
+node $(dirname $0)

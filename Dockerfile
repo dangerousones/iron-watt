@@ -1,7 +1,7 @@
 FROM node:latest
 MAINTAINER Kaiden Prince <me@kaidenprince.com>
 
-RUN echo FORCE-REBUILD 0
+RUN echo FORCE-REBUILD 1
 
 RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" >> /etc/apt/sources.list \
     && echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" >> /etc/apt/sources.list \
@@ -16,6 +16,6 @@ VOLUME /usr/src/app/data
 ENV DEBUG='IronWatt*'
 WORKDIR /usr/src/app/data
 
-COPY . /usr/src/app
+ADD . /usr/src/app
 
 CMD ["bash", "../start.sh"]
