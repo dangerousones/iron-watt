@@ -20,3 +20,6 @@ that the vanilla minecraft server wouldn't let you do (ie. create commands).
 ## Contributing
 To contribute just fork, and make changes and create a pull request.
 Check the Issues for stuff to do!
+
+## License
+AGPLv3, See LICENSE.md for details
