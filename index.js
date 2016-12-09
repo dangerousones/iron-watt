@@ -11,11 +11,30 @@
 "use strict";
 
 const d = require("debug")("IronWatt:main"),
+    fs = require('fs'),
     util = require("./src/util")
 
 d("IronWatt Started")
 d("Loading Config")
 require("./src/conf").readConf().on("load", () => {
     d("Config loaded!")
-    util.minecraft.downloadServerAuto()
+    if (conf.minecraft.autoDownload) {
+        util.minecraft.downloadServerAuto()
+    } else {
+        fs.stat(jarName, (err, stats) => {
+            if (err && err.code === "ENOENT") {
+                d(`Minecraft Server jar ${jarName} not found. Will Download now.`)
+                downloadServer(jarName, callback)
+            } else if (!err) {
+                if (stats.isFile()) {
+                    // All good, can now run
+
+                } else {
+                    throw new Error(`${jarName} is not a file`)
+                }
+            } else {
+                throw err
+            }
+        })
+    }
 })

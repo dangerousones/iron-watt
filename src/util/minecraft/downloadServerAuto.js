@@ -18,7 +18,7 @@ module.exports = function (callback) {
 
     fs.stat(jarName, (err, stats) => {
         if (err && err.code === "ENOENT") {
-            d(`Minecraft Server jar ${jarName} not found.`)
+            d(`Minecraft Server jar ${jarName} not found. Will Download now.`)
             downloadServer(jarName, callback)
         } else {
             if (typeof callback === 'function') callback(err)
