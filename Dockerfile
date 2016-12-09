@@ -10,6 +10,7 @@ RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" >> /
     && apt-get update && apt-get upgrade -y && apt-get -y dist-upgrade \
     && apt-get -y install oracle-java8-installer \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+ENV JAVA_HOME=/usr/lib/jvm/java-8-oracle
 
 EXPOSE 25565
 VOLUME /usr/src/app/data
@@ -19,4 +20,5 @@ WORKDIR /usr/src/app/data
 ADD . /usr/src/app
 RUN rm -rf ../node_modules
 
-CMD ["bash", "../start.sh"]
+CMD ["bash"]
+#, "../start.sh"]

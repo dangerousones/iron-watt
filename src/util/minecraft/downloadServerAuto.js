@@ -14,7 +14,7 @@ const downloadServer = require("./downloadServer"),
     d = require("debug")("IronWatt:util:minecraft:downloadServerAuto")
 
 module.exports = function (callback) {
-    let jarName = `minecraft-server-${conf.minecraft.version}.jar`
+    let jarName = conf.minecraft.getJarName()
 
     fs.stat(jarName, (err, stats) => {
         if (err && err.code === "ENOENT") {

@@ -21,5 +21,8 @@ module.exports = class Conf {
                 "autoDownload": true,
             }
         }, conf)
+        this.minecraft.getJarName = function () {
+            return `minecraft-server-${conf.minecraft.version}.jar`
+        }
     }
 }
