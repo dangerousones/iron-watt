@@ -10,9 +10,7 @@
  *******************************************************/
 "use strict";
 
-const d = require("debug")("IronWatt:main")
-
-require("./src/conf").readConf().on("load", () => {
-    let util = require("./src/util")
-    util.minecraft.downloadServerAuto()
-})
+module.exports = {
+    downloadServer: require("./downloadServer"),
+    downloadServerAuto: require("./downloadServerAuto")
+}

@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/IronWatt/iron-watt#readme",
   "dependencies": {
-    "debug": "^2.3.3"
+    "debug": "^2.3.3",
+    "jsonfile": "^2.4.0"
   }
 }
