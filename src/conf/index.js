@@ -28,6 +28,7 @@ module.exports = new (class extends EventEmitter {
             global.conf = new Conf(obj)
             this.emit("load")
         }.bind(this))
+        return this;
     }
 
     saveConf(fileName, config) {
@@ -42,5 +43,6 @@ module.exports = new (class extends EventEmitter {
             if (err) throw err
             this.emit("save")
         }.bind(this))
+        return this;
     }
 })()
