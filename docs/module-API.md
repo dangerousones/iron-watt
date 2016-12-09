@@ -6,4 +6,4 @@ nodejs modules that IronWatt will automatically `require()`. Your module must ex
 
 
 
-[module class]: https://github.com/IronWatt/iron-watt/src/module/module.js
+[module class]: https://github.com/IronWatt/iron-watt/blob/src/module/module.js
