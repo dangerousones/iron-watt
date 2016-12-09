@@ -22,9 +22,9 @@ module.exports = function (uri, callback) {
             error = new Error(`Request Failed. Status Code: ${res.statusCode}`);
         }
         if (error) {
-            //d(error.message);
             // consume response data to free up memory
             res.resume();
+            callback(error)
             return;
         }
 
