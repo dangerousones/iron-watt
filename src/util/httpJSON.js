@@ -35,7 +35,7 @@ module.exports = function (uri, callback) {
         res.on('end', () => {
             try {
                 let parsedData = JSON.parse(rawData)
-                if (callback) callback(parsedData)
+                if (callback) callback(error, parsedData)
             } catch (e) {
                 throw e
             }
