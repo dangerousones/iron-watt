@@ -25,6 +25,7 @@ module.exports = function (jarName, callback) {
             httpJSON(launchermetaData.versions[launchermetaData.versions.findIndex(ver => ver.id === conf.minecraft.version)].url, (err, mcFiles) => {
                 if (err) throw err
                 if (mcFiles && mcFiles.downloads && mcFiles.downloads.server && mcFiles.downloads.server.url) {
+                    d("download and parse complete. Will download jar now.")
                     https.get(mcFiles.downloads.server.url, function (res) {
                         let error;
                         if (res.statusCode !== 200) {

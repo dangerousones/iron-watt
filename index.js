@@ -10,9 +10,12 @@
  *******************************************************/
 "use strict";
 
-const d = require("debug")("IronWatt:main")
+const d = require("debug")("IronWatt:main"),
+    util = require("./src/util")
 
+d("IronWatt Started")
+d("Loading Config")
 require("./src/conf").readConf().on("load", () => {
-    let util = require("./src/util")
+    d("Config loaded!")
     util.minecraft.downloadServerAuto()
 })
