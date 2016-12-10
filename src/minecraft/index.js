@@ -32,7 +32,7 @@ class Minecraft extends EventEmitter {
         this.mc = child_process.execFile(
             path.join(process.env.JAVA_HOME, "bin", "java"),
             ["-jar", conf.minecraft.getJarName(),
-                //"nogui"
+                "nogui"
             ]
         )
         this.mc.stdin.setEncoding('utf8')
@@ -91,6 +91,8 @@ class Minecraft extends EventEmitter {
             if (typeof callback === 'function') callback()
         })
     }
+
+
 }
 
 module.exports = Minecraft
