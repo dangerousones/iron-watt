@@ -12,17 +12,44 @@
 
 module.exports = class Conf {
     constructor(conf) {
-        Object.assign(this, {
+        const defaultConf = {
             "minecraft": {
                 // See https://launchermeta.mojang.com/mc/game/version_manifest.json for valid id's
                 "version": "1.11",
 
                 // Auto download Minecraft jar if non-exist?
                 "autoDownload": true,
+                "getJarName": function () {
+                    return `minecraft-server-${conf.minecraft.version}.jar`
+                },
+
+                "forceOptions": {
+                    "gamemode": 1,
+                    "enable-command-block": true,
+                    "max-players": 100,
+                    "server-port": 25566,
+                    "server-ip": "127.0.0.1",
+                    "online-mode": false
+                }
             }
-        }, conf)
-        this.minecraft.getJarName = function () {
-            return `minecraft-server-${conf.minecraft.version}.jar`
         }
+
+        function merge(objArr) {
+            let result = {};
+            objArr.forEach((obj) => {
+                if (typeof obj !== "undefined") {
+                    Object.keys(obj).forEach((key) => {
+                        if (typeof obj[key] === 'object') {
+                            result[key] = merge([result[key], obj[key]])
+                        } else {
+                            result[key] = obj[key]
+                        }
+                    })
+                }
+            })
+            return result
+        }
+
+        Object.assign(this, merge([defaultConf, conf]))
     }
 }

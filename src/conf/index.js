@@ -26,6 +26,8 @@ module.exports = new (class extends EventEmitter {
                 } else throw err
             }
             global.conf = new Conf(obj)
+            d("Conf Loaded!")
+            d("conf is:", JSON.stringify(conf))
             this.emit("load")
         }.bind(this))
         return this;
