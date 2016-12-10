@@ -12,7 +12,9 @@
 
 const EventEmitter = require("events").EventEmitter,
     child_process = require("child_process"),
+    fs = require("fs"),
     path = require("path"),
+    properties = require("properties"),
     d = require("debug")("IronWatt:minecraft")
 
 class Minecraft extends EventEmitter {
@@ -24,6 +26,7 @@ class Minecraft extends EventEmitter {
     }
 
     start() {
+        this.forceConf()
         process.on('exit', this.stop)
         process.on('SIGINT', this.stop)
         process.on('SIGTERM', this.stop)
@@ -92,7 +95,10 @@ class Minecraft extends EventEmitter {
         })
     }
 
-
+    forceConf() {
+        let prop = properties.stringify(conf.minecraft.forceOptions)
+        fs.appendFileSync('server.properties', prop)
+    }
 }
 
 module.exports = Minecraft
