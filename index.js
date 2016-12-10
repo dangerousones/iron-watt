@@ -36,7 +36,7 @@ require("./src/conf").readConf().on("load", () => {
                 mc.start()
                 setTimeout(() => {
                     d("stopping Minecraft")
-                    mc.stop(true)
+                    mc.restart()
                 }, 60000)
             } else {
                 throw new Error(`${jarName} is not a file`)

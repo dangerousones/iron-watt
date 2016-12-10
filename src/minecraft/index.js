@@ -65,18 +65,27 @@ class Minecraft extends EventEmitter {
         }
     }
 
-    stop(force) {
+    stop(force, waitTime, callback) {
         d('killing child processes');
         if (typeof this.mc !== "undefined") {
             if (!force && typeof this.mc.stdin.write === 'function') {
                 this.mc.stdin.write("stop\n")
                 setTimeout(function () {
                     this.mc.kill()
-                }.bind(this), 30000)
+                    if (typeof callback === 'function') callback()
+                }.bind(this), typeof waitTime === 'number' ? waitTime : 10000)
             } else {
                 this.mc.kill()
+                if (typeof callback === 'function') callback()
             }
         }
+    }
+
+    restart(force, waitTime, callback) {
+        this.stop(false, waitTime, () => {
+            this.start()
+            if (typeof callback === 'function') callback()
+        })
     }
 }
 
