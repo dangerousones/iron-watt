@@ -70,10 +70,14 @@ class Minecraft extends EventEmitter {
         if (typeof this.mc !== "undefined") {
             if (!force && typeof this.mc.stdin.write === 'function') {
                 this.mc.stdin.write("stop\n")
-                setTimeout(function () {
+                let TO = setTimeout(function () {
                     this.mc.kill()
                     if (typeof callback === 'function') callback()
-                }.bind(this), typeof waitTime === 'number' ? waitTime : 10000)
+                }.bind(this), typeof waitTime === 'number' ? waitTime : 60000)
+                this.mc.on("close", () => {
+                    clearTimeout(TO)
+                    if (typeof callback === 'function') callback()
+                })
             } else {
                 this.mc.kill()
                 if (typeof callback === 'function') callback()
