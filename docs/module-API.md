@@ -16,10 +16,11 @@ This Object contains other objects orgainized inte multiple catagories:
     - `.restart()`
     - `.write()`: Send text to minecraft stdin
   - `.player`
-    - `.getPlayers()`: Returns an arrar with all player Object
+    - `.getPlayers()`: Returns an array with all player Object
     - `.Player`: Class with player functions
   - `.command`
     - `.register(Command)` register command. command is of class `Command`
     - `.Command` Class of command
+
 
 [module class]: https://github.com/IronWatt/iron-watt/blob/src/module/module.js
