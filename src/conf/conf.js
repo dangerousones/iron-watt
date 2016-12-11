@@ -23,14 +23,22 @@ module.exports = class Conf {
                     return `minecraft-server-${conf.minecraft.version}.jar`
                 },
 
-                "forceOptions": {
-                    "gamemode": 1,
-                    "enable-command-block": true,
-                    "max-players": 100,
-                    "server-port": 25566,
-                    "server-ip": "127.0.0.1",
-                    "online-mode": false
-                }
+                "options": {
+                    server: {
+                        "gamemode": 1,
+                        "enable-command-block": true,
+                        "max-players": 100,
+                        "server-port": 25566,
+                        "server-ip": "127.0.0.1",
+                        "online-mode": false
+                    },
+                    proxy: {
+                        "port": 25565,
+                        "ip": "0.0.0.0",
+                        "online-mode": false,
+                        version: "1.11"
+                    }
+                },
             }
         }
 

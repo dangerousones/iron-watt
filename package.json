@@ -17,8 +17,10 @@
   },
   "homepage": "https://github.com/IronWatt/iron-watt#readme",
   "dependencies": {
+    "buffer-equal": "^1.0.0",
     "debug": "^2.3.3",
     "jsonfile": "^2.4.0",
+    "minecraft-protocol": "^1.1.1",
     "properties": "^1.2.1"
   }
 }

@@ -13,7 +13,7 @@
 const d = require("debug")("IronWatt:main"),
     fs = require('fs'),
     util = require("./src/util"),
-    Minecraft = require("./src/minecraft")
+    Minecraft = require("./src/proxy")
 
 d("IronWatt Started")
 d("Loading Config")
@@ -34,6 +34,7 @@ require("./src/conf").readConf().on("load", () => {
                 mc = new Minecraft()
                 d("starting Minecraft")
                 mc.start()
+                // setTimeout(()=>{mc.stop()},5000)
             } else {
                 throw new Error(`${jarName} is not a file`)
             }
