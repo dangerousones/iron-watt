@@ -18,6 +18,12 @@ This Object contains other objects orgainized inte multiple catagories:
   - `.player`
     - `.getPlayers()`: Returns an array with all player Object
     - `.Player`: Class with player functions
+      - `.exec()` forces the player to send an chat to the main server
+      - `.kick()`
+      - `.kill()`
+      - `.tp(dest)` dest can be anything that the `/tp` minecraft command accepts
+      - `.gamemode(mode)`
+      - `.name()`
   - `.command`
     - `.register(Command)` register command. command is of class `Command`
     - `.Command` Class of command
