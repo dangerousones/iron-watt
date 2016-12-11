@@ -2,7 +2,8 @@
 
 ### Note: This is a draft, and this may be unimplemented at the moment.
 In the modules subdirectory of the server directory (the directory that you execute `start.sh`) you can create
-nodejs modules that IronWatt will automatically `require()`. Your module must extend [module class] 
+nodejs modules that IronWatt will automatically `require()`. The module can be in a directory, (it will use `require()` on the directory),
+or a `.js` file. Your module must extend [module class] 
 
 ## Basic Usage
 The [module class] adds a variable called `IronWatt` to `this` which contains usefull functions for
