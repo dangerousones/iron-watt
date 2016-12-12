@@ -1,6 +1,22 @@
 {
-  "minecraft": {
-    "version": "1.11",
-    "autoDownload": true
-  }
+    "minecraft": {
+        "version": "1.11",
+        "autoDownload": true,
+        "options": {
+            "server": {
+                "gamemode": 1,
+                "enable-command-block": true,
+                "max-players": 100,
+                "server-port": 25566,
+                "server-ip": "127.0.0.1",
+                "online-mode": false
+            },
+            "proxy": {
+                "port": 25565,
+                "ip": "0.0.0.0",
+                "online-mode": false,
+                "version": "1.11"
+            }
+        }
+    }
 }

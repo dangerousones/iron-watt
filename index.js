@@ -21,26 +21,26 @@ let mc;
 require("./src/conf").readConf().on("load", () => {
     d("Config loaded!")
     if (conf.minecraft.autoDownload) {
-        util.minecraft.downloadServerAuto()
-    }
-    let jarName = conf.minecraft.getJarName()
-    fs.stat(jarName, (err, stats) => {
-        if (err && err.code === "ENOENT") {
-            d(`Minecraft Server jar ${jarName} not found. Will Download now.`)
-            downloadServer(jarName, callback)
-        } else if (!err) {
-            if (stats.isFile()) {
-                // All good, can now run
-                mc = new Minecraft()
-                d("starting Minecraft")
-                mc.start()
-                // setTimeout(()=>{mc.stop()},5000)
+        util.minecraft.downloadServerAuto(next)
+    } else next()
+    function next() {
+        let jarName = conf.minecraft.getJarName()
+        fs.stat(jarName, (err, stats) => {
+            if (err && err.code === "ENOENT") {
+                new Error(`Minecraft jar ${jarName} not found`)
+            } else if (!err) {
+                if (stats.isFile()) {
+                    // All good, can now run
+                    mc = new Minecraft()
+                    d("starting Minecraft")
+                    mc.start()
+                    // setTimeout(()=>{mc.stop()},5000)
+                } else {
+                    throw new Error(`${jarName} is not a file`)
+                }
             } else {
-                throw new Error(`${jarName} is not a file`)
+                throw err
             }
-        } else {
-            throw err
-        }
-    })
-
+        })
+    }
 })

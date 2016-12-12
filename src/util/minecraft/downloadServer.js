@@ -51,6 +51,7 @@ module.exports = function (jarName, callback) {
                                 hash.end();
                                 if (hash.read() === mcFiles.downloads.server.sha1) {
                                     d(`Hash matches ${mcFiles.downloads.server.sha1}`)
+                                    if (typeof callback == "function") callback()
                                 } else {
                                     d(`Hash mismatch: ${mcFiles.downloads.server.sha1}`)
                                     process.exit(1)

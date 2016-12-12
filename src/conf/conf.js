@@ -20,7 +20,7 @@ module.exports = class Conf {
                 // Auto download Minecraft jar if non-exist?
                 "autoDownload": true,
                 "getJarName": function () {
-                    return `minecraft-server-${conf.minecraft.version}.jar`
+                    return `minecraft-server-${defaultConf.minecraft.version}.jar`
                 },
 
                 "options": {
