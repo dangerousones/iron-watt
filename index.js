@@ -34,7 +34,6 @@ require("./src/conf").readConf().on("load", () => {
                     mc = new Minecraft()
                     d("starting Minecraft")
                     mc.start()
-                    // setTimeout(()=>{mc.stop()},5000)
                 } else {
                     throw new Error(`${jarName} is not a file`)
                 }
@@ -43,4 +42,15 @@ require("./src/conf").readConf().on("load", () => {
             }
         })
     }
+})
+
+const readline = require('readline');
+let rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+    terminal: false
+});
+
+rl.on('line', function (line) {
+    mc.writeLine(line)
 })

@@ -108,6 +108,14 @@ class Minecraft extends EventEmitter {
         })
     }
 
+    writeLine(line) {
+        try {
+            this.mc.stdin.write(line + "\n")
+        } catch (e) {
+
+        }
+    }
+
     static forceConf() {
         let prop = properties.stringify(conf.minecraft.options.server)
         fs.appendFileSync('server.properties', prop)
