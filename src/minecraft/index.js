@@ -26,7 +26,7 @@ class Minecraft extends EventEmitter {
     }
 
     start() {
-        this.forceConf()
+        Minecraft.forceConf()
         process.on('exit', this.stop)
         process.on('SIGINT', this.stop)
         process.on('SIGTERM', this.stop)
@@ -108,9 +108,11 @@ class Minecraft extends EventEmitter {
         })
     }
 
-    forceConf() {
-        let prop = properties.stringify(conf.minecraft.forceOptions)
+    static forceConf() {
+        let prop = properties.stringify(conf.minecraft.options.server)
         fs.appendFileSync('server.properties', prop)
+        d("WARNING: By using this you accept the minecraft eula")
+        fs.writeFileSync('eula.txt', "eula=true")
     }
 }
 
