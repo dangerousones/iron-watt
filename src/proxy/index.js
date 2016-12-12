@@ -68,8 +68,12 @@ class Proxy extends Minecraft {
             })
             client.on('packet', function (data, meta) {
                 if (targetClient.state === states.PLAY && meta.state === states.PLAY) {
-                    if (!endedTargetClient)
-                        targetClient.write(meta.name, data)
+                    if (!endedTargetClient) {
+                        // commands are handled later
+                        if (meta.name !== 'chat' || !data.message.match('^/.*$')) {
+                            targetClient.write(meta.name, data)
+                        }
+                    }
                 }
             })
             targetClient.on('packet', function (data, meta) {
@@ -116,12 +120,23 @@ class Proxy extends Minecraft {
             })
             targetClient.on('error', function (err) {
                 endedTargetClient = true
-                d('Connection error by server. Client IP:', addr + 'Error:', err)
+                d('Connection error by server. Client IP:', addr + ' Error:', err)
                 d(err.stack)
                 if (!endedClient)
                     client.end("Error with connection to upstream. Try again Later.")
             })
-        })
+
+
+            client.on('chat', function (data, s2, s3, s4) {
+                if (data.message.match("^/.*")) {
+                    if (data.message === '/hi') {
+                        this.writeLine(`say Hello ${client.username}!`)
+                    } else {
+                        targetClient.write('chat', {message: data.message})
+                    }
+                }
+            }.bind(this))
+        }.bind(this))
     }
 
     stop(force, waitTime, callback) {
@@ -130,6 +145,10 @@ class Proxy extends Minecraft {
             if (typeof this.srv !== 'undefined' && typeof this.srv.close === 'function') this.srv.close()
             if (typeof callback === 'function') callback()
         })
+    }
+
+    writeLine(line) {
+        super.writeLine(line)
     }
 }
 
