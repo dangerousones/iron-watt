@@ -11,7 +11,7 @@
 "use strict"
 
 const EventEmitter = require("events").EventEmitter,
-    d = require("debug")("IronWatt:minecraft"),
+    d = require("debug")("IronWatt:proxy"),
     MCp = require('minecraft-protocol'),
     states = MCp.states
 
