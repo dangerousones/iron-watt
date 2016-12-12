@@ -11,6 +11,7 @@
 "use strict"
 
 const EventEmitter = require("events").EventEmitter,
+    bufferEqual = require('buffer-equal'),
     d = require("debug")("IronWatt:proxy"),
     MCp = require('minecraft-protocol'),
     states = MCp.states
@@ -81,7 +82,6 @@ class Proxy extends Minecraft {
                     }
                 }
             })
-            let bufferEqual = require('buffer-equal')
             targetClient.on('raw', function (buffer, meta) {
                 if (client.state !== states.PLAY || meta.state !== states.PLAY)
                     return
@@ -110,16 +110,16 @@ class Proxy extends Minecraft {
             })
             targetClient.on('end', function () {
                 endedTargetClient = true
-                d('Connection closed by server', '(' + addr + ')')
+                d('Connection closed by server. Client IP:', addr)
                 if (!endedClient)
-                    client.end("End")
+                    client.end("Connection ended to upstream. Try again Later.")
             })
             targetClient.on('error', function (err) {
                 endedTargetClient = true
-                d('Connection error by server', '(' + addr + ') ', err)
+                d('Connection error by server. Client IP:', addr + 'Error:', err)
                 d(err.stack)
                 if (!endedClient)
-                    client.end("Error")
+                    client.end("Error with connection to upstream. Try again Later.")
             })
         })
     }
@@ -127,6 +127,7 @@ class Proxy extends Minecraft {
     stop(force, waitTime, callback) {
         if (typeof this.srv !== 'undefined' && typeof this.srv.close === 'function') this.srv.close()
         super.stop(force, waitTime, function () {
+            if (typeof this.srv !== 'undefined' && typeof this.srv.close === 'function') this.srv.close()
             if (typeof callback === 'function') callback()
         })
     }
